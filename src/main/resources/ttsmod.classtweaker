@@ -1,0 +1,5 @@
+classTweaker v1 named
+accessible field net/minecraft/client/sounds/SoundManager soundEngine Lnet/minecraft/client/sounds/SoundEngine;
+accessible field net/minecraft/client/sounds/SoundEngine soundBuffers Lnet/minecraft/client/sounds/SoundBufferLibrary;
+accessible field com/mojang/blaze3d/audio/SoundBuffer data Ljava/nio/ByteBuffer;
+accessible field com/mojang/blaze3d/audio/SoundBuffer format Ljavax/sound/sampled/AudioFormat;

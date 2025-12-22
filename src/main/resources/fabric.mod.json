@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "ttsmod",
+  "version": "${version}",
+  "name": "TTSMod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MPL-2.0",
+  "icon": "assets/ttsmod/icon.png",
+  "environment": "client",
+  "accessWidener": "ttsmod.classtweaker",
+  "entrypoints": {
+    "client": [
+      "net.flamgop.ttsmod.client.TTSModClient"
+    ],
+    "main": [
+      "net.flamgop.ttsmod.TTSMod"
+    ],
+    "voicechat": [
+      "net.flamgop.ttsmod.client.TTSPlugin"
+    ]
+  },
+  "mixins": [
+    "ttsmod.mixins.json",
+    {
+      "config": "ttsmod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "voicechat": ">=2.6.0"
+  }
+}

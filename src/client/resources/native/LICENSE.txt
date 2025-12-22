@@ -1,0 +1,4 @@
+libespeak-ng.dll is licensed under GPLv3, see https://github.com/espeak-ng/espeak-ng/blob/master/COPYING for full license.
+espeak-ng-data also falls under the same license, see above^
+
+note: both files are verbatim copied (not manually compiled) from the windows installation of espeak-ng 1.52
