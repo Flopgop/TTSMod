@@ -6,8 +6,9 @@
 *.iws
 
 # Custom
-src/client/resources/native/libespeak-ng.dll
-src/client/resources/native/espeak-ng-data
+src/client/resources/native/espeak-ng-data/*
+src/client/resources/native/**/*.dll
+src/client/resources/native/**/*.so
 
 # IntelliJ
 out/

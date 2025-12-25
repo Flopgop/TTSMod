@@ -1,4 +1,4 @@
-package net.flamgop.ttsmod.client;
+package net.flamgop.ttsmod.client.compat.svc;
 
 import de.maxhenkel.voicechat.api.VoicechatApi;
 import de.maxhenkel.voicechat.api.VoicechatClientApi;
@@ -7,21 +7,18 @@ import de.maxhenkel.voicechat.api.audiochannel.ClientStaticAudioChannel;
 import de.maxhenkel.voicechat.api.events.ClientVoicechatConnectionEvent;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
 import de.maxhenkel.voicechat.api.events.MergeClientSoundEvent;
-import org.jetbrains.annotations.Nullable;
+import net.flamgop.ttsmod.client.TTSMod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 public class TTSPlugin implements VoicechatPlugin {
 
-    public static @Nullable TTSPlugin INSTANCE;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TTSPlugin.class);
 
-    private AudioManager manager;
     private VoicechatClientApi clientApi;
     private ClientStaticAudioChannel ttsEchoChannel;
-
-    public AudioManager audioManager() {
-        return manager;
-    }
 
     @Override
     public String getPluginId() {
@@ -30,11 +27,7 @@ public class TTSPlugin implements VoicechatPlugin {
 
     @Override
     public void initialize(VoicechatApi api) {
-        INSTANCE = this;
-        manager = new AudioManager(
-                NativeHelper.extractNative("native/libespeak-ng.dll").toAbsolutePath().toString(),
-                NativeHelper.extractData("native/espeak-ng-data").toAbsolutePath().toString()
-        );
+        LOGGER.info("Loaded SimpleVoiceChat integration!");
     }
 
     @Override
@@ -44,10 +37,12 @@ public class TTSPlugin implements VoicechatPlugin {
             ttsEchoChannel = clientApi.createStaticAudioChannel(UUID.randomUUID());
         });
         registration.registerEvent(MergeClientSoundEvent.class, packet -> {
-            if (manager.frameAvailable()) {
-                short[] frame = manager.getFrame();
+            if (TTSMod.INSTANCE.audioManager().frameAvailable()) {
+                short[] frame = TTSMod.INSTANCE.audioManager().getFrame();
                 packet.mergeAudio(frame);
-                if (ttsEchoChannel != null) ttsEchoChannel.play(frame);
+                if (TTSMod.INSTANCE.config().hearSelf) {
+                    if (ttsEchoChannel != null) ttsEchoChannel.play(frame);
+                }
             }
         });
     }

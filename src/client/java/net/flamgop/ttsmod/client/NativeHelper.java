@@ -18,7 +18,7 @@ public class NativeHelper {
             return outputPath;
         }
 
-        try (InputStream in = TTSModClient.class.getClassLoader().getResourceAsStream(resourcePath)) {
+        try (InputStream in = TTSMod.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (in == null) throw new IOException("Resource not found: " + resourcePath);
 
             File file = outputPath.toFile();

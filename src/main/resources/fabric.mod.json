@@ -2,27 +2,26 @@
   "schemaVersion": 1,
   "id": "ttsmod",
   "version": "${version}",
-  "name": "TTSMod",
-  "description": "",
-  "authors": [],
+  "name": "Simple Text To Speech",
+  "description": "text to speech mod",
+  "authors": ["Flamgop"],
   "contact": {},
-  "license": "MPL-2.0",
+  "license": "GPL-3.0-or-later",
   "icon": "assets/ttsmod/icon.png",
   "environment": "client",
   "accessWidener": "ttsmod.classtweaker",
   "entrypoints": {
     "client": [
-      "net.flamgop.ttsmod.client.TTSModClient"
-    ],
-    "main": [
-      "net.flamgop.ttsmod.TTSMod"
+      "net.flamgop.ttsmod.client.TTSMod"
     ],
     "voicechat": [
-      "net.flamgop.ttsmod.client.TTSPlugin"
+      "net.flamgop.ttsmod.client.compat.svc.TTSPlugin"
+    ],
+    "modmenu": [
+      "net.flamgop.ttsmod.client.compat.TTSModMenuApiImpl"
     ]
   },
   "mixins": [
-    "ttsmod.mixins.json",
     {
       "config": "ttsmod.client.mixins.json",
       "environment": "client"
@@ -32,6 +31,14 @@
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
     "minecraft": "${minecraft_version}",
-    "voicechat": ">=2.6.0"
+    "voicechat": ">=1.21.10-2.6.0",
+    "yet_another_config_lib_v3": ">=3.8.1"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/mod/simple-text-to-speech/"
+      }
+    }
   }
 }

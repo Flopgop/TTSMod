@@ -51,6 +51,8 @@ public class AudioManager {
     private double resampleOffset = 0.0;
     private short lastSample = 0;
 
+    private String currentVoice = "";
+
     public AudioManager(String nativePath, String dataPath) {
         eSpeak = new ESpeak(nativePath);
         this.audioBuffer = Arena.ofAuto().allocate(ValueLayout.JAVA_SHORT, RING_CAPACITY);
@@ -215,6 +217,11 @@ public class AudioManager {
     }
 
     public short[] getFrame() {
+        if (!TTSMod.INSTANCE.config().voice.equals(this.currentVoice)) {
+            this.eSpeak.setVoiceByName(TTSMod.INSTANCE.config().voice);
+            this.currentVoice = TTSMod.INSTANCE.config().voice;
+        }
+
         short[] out = new short[OUT_FRAME_SAMPLES];
         double step = (double) IN_RATE / OUT_RATE;
 

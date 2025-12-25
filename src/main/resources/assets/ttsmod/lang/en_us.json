@@ -1,0 +1,8 @@
+{
+  "yacl3.config.ttsmod:config.hearSelf": "Hear Self",
+  "yacl3.config.ttsmod:config.synthToChat": "Synth To Chat",
+  "yacl3.config.ttsmod:config.synthToChat.description": "Send all text to speech commands to chat (exactly as you typed them in the command)",
+  "yac3l.config.ttsmod:config.voice": "Voice",
+  "yac3l.config.ttsmod:config.voice.description": "For a list of valid voices, open a world and run the \"/synth voices\" command.",
+  "yacl3.config.ttsmod:config.category.tts": "Text To Speech"
+}
